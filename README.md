@@ -50,3 +50,11 @@ This step initializes the GitHub repository and adds a simple Python script.
 
 python hello.py
 
+## Step 2: Linux & Scripting Basics
+
+This step adds a Linux shell script that prints basic system information.
+
+### File
+
+```text
+scripts/sysinfo.sh
