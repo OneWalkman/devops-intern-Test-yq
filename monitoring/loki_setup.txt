@@ -1,0 +1,40 @@
+Grafana Loki Local Setup Notes
+==============================
+
+This project documents a simple local Loki setup using Docker, integrated with HashiCorp Nomad for container orchestration. Logs are forwarded via the Docker logging driver.
+
+1. Start Loki locally with Docker
+---------------------------------
+docker run -d --name loki \
+  -p 3100:3100 \
+  grafana/loki:latest
+
+Check that Loki is running:
+curl http://localhost:3100/ready
+
+2. Deploy the project via Nomad
+--------------------------------------
+Instead of running standalone Docker containers, we use Nomad to orchestrate the workload.
+
+nomad job run nomad/hello.nomad
+
+3. Forwarding logs to Loki
+--------------------------
+Log forwarding is configured directly in the Nomad job file (`hello.nomad`) using the Docker Loki driver plugin (`grafana/loki-docker-driver`). 
+
+It forwards container standard output to Loki's push API at:
+http://127.0.0.1:3100/loki/api/v1/push
+
+4. View logs (REST API & LogCLI)
+------------------------
+The Nomad job tags the logs with `job="nomad-hello-app"`.
+
+Option A: View via cURL (REST API)
+curl -G -s "http://127.0.0.1:3100/loki/api/v1/query" --data-urlencode 'query={job="nomad-hello-app"}'
+
+Option B: View via LogCLI (If installed)
+logcli --addr=http://localhost:3100 query '{job="nomad-hello-app"}'
+
+5. Screenshots
+--------------
+[Optional: Insert screenshot of log output here]
