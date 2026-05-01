@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DevOps Intern Final Project
 
 [![CI](https://github.com/OneWalkman/devops-intern-Test-yq/actions/workflows/ci.yml/badge.svg)](https://github.com/OneWalkman/devops-intern-Test-yq/actions/workflows/ci.yml)
@@ -177,3 +178,7 @@ http://127.0.0.1:5000
 └── scripts/
     └── sysinfo.sh
 ```
+=======
+# devops-intern-Test-yq
+devops-intern-final, a test project for evaluation
+>>>>>>> d7fb1414bc572b193cccc05f8d0cee9d227d179e
